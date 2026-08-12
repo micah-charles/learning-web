@@ -204,6 +204,14 @@ export default function ChineseInputKingdom({
     onOpenPanel("");
   }
 
+  function startRelatedLesson(lessonPreview) {
+    const lesson = dataset.lessons.find((candidate) => candidate.id === lessonPreview?.id);
+    if (!lesson) return;
+    runtime.setIntent("journey");
+    runtime.startSession(lesson.id);
+    onStartLesson(lesson);
+  }
+
   function handleRegionAction(action, node) {
     const key = String(node.metadata?.key || "");
     const chapterCandidate = runtime.candidates.find((candidate) => candidate.kind === "chapter" && candidate.objectiveRefs?.includes(node.id))
@@ -287,7 +295,7 @@ export default function ChineseInputKingdom({
         <WorldOverlay title={titleByPanel[panel] || "Chinese Input Kingdom"} eyebrow="FoxChild Learning World" onClose={closeWorldPanel} wide={panel !== "settings"} immersive={["journey", "explore", "arena", "collection"].includes(panel)}>
           {panel === "journey" && <JourneyPath chapters={runtime.world.chapters} currentId={recommendedLesson?.id} onSelect={(chapter) => startDirectedLesson(dataset.lessons.find((lesson) => lesson.id === chapter.id))} />}
           {panel === "training" && <TrainingGround dataset={dataset} model={model} onSelectRoot={onSelectRoot} pronounce={pronounce} />}
-          {panel === "explore" && <KnowledgeWorld nodes={runtime.world.nodes} selectedNode={selectedRegionNode} actions={regionActions} onSelect={selectKnowledgeNode} onCloseRegion={() => setSelectedRegionNode(null)} onRegionAction={handleRegionAction} onStartCustomAdventure={startCustomAdventure} />}
+          {panel === "explore" && <KnowledgeWorld nodes={runtime.world.nodes} selectedNode={selectedRegionNode} actions={regionActions} onSelect={selectKnowledgeNode} onCloseRegion={() => setSelectedRegionNode(null)} onRegionAction={handleRegionAction} onLessonSelect={startRelatedLesson} onStartCustomAdventure={startCustomAdventure} />}
           {panel === "review" && <ReviewLibrary shelves={reviewShelves} onStart={startDirectedReview} />}
           {panel === "arena" && !arenaMode && <ArenaFrame activities={arenaActivities} stats={{ level: `Lv. ${Math.max(1, Math.floor((miniGameProfile.xp || 0) / 500) + 1)}`, accuracy: `${runtime.evidence.recentAccuracy || 0}%`, streak: `${Math.max(0, runtime.evidence.recentAccuracy ? Math.round(runtime.evidence.recentAccuracy / 8) : 0)}`, goal: `${Math.min(20, model.masteredCharacterCount || 0)} / 20` }} onSelect={(activity) => activity.id === "football" && setArenaMode("football")} />}
           {panel === "arena" && arenaMode === "football" && <ArenaChallengePicker method={method} dataset={dataset} moduleProgress={moduleProgress} currentRootKey={model.currentRoot.key} journeyLesson={recommendedLesson} reviewLesson={reviewLesson} onBack={() => setArenaMode("")} onStart={startDirectedFootball} />}

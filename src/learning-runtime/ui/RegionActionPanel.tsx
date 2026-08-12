@@ -32,6 +32,7 @@ export default function RegionActionPanel({
   regionIcon,
   actions,
   onAction,
+  onLessonSelect,
   onClose,
 }: {
   node: LearningNode;
@@ -39,6 +40,7 @@ export default function RegionActionPanel({
   regionIcon: string;
   actions: readonly RegionAction[];
   onAction: (action: RegionAction) => void;
+  onLessonSelect?: (lesson: PreviewItem) => void;
   onClose: () => void;
 }) {
   const [detailView, setDetailView] = useState<"actions" | "statistics">("actions");
@@ -88,7 +90,7 @@ export default function RegionActionPanel({
           <div className="flr-detail-stat-grid"><div><b>{completion}%</b><small>Completion</small></div><div><b>{mastered.length}</b><small>Mastered preview</small></div><div><b>{weak.length}</b><small>Needs care</small></div><div><b>{Number(metadata.upcomingDiscoveries || 0)}</b><small>Upcoming</small></div></div>
           <div className="flr-detail-block"><h5>Characters</h5><div className="flr-preview-chips">{characters.length ? characters.map((item) => <span key={item.id || item.glyph} className={`is-${item.state || "available"}`} title={`${item.label || "Character"}: ${item.progress || 0}%`}><b lang="zh-Hant">{item.glyph}</b><small>{item.progress || 0}%</small></span>) : <p className="flr-muted-copy">Discover the first character in this region to begin its collection.</p>}</div></div>
           <div className="flr-detail-block"><h5>Related words</h5><div className="flr-related-list">{words.length ? words.map((item) => <span key={item.word}><b lang="zh-Hant">{item.word}</b><small>{item.meaning || "Meaning pending review"}</small></span>) : <p className="flr-muted-copy">Words will appear as the reviewed curriculum grows.</p>}</div></div>
-          <div className="flr-detail-block"><h5>Related lessons</h5><div className="flr-related-list">{lessons.length ? lessons.slice(0, 4).map((item) => <span key={item.id}><b>{item.label}</b><small>{item.progress || 0}% complete</small></span>) : <p className="flr-muted-copy">No nearby chapters yet.</p>}</div></div>
+          <div className="flr-detail-block"><h5>Related lessons</h5><div className="flr-related-list">{lessons.length ? lessons.slice(0, 4).map((item) => <button type="button" className="flr-related-lesson" key={item.id} onClick={() => onLessonSelect?.(item)} disabled={!onLessonSelect}><b>{item.label}</b><small>{item.progress || 0}% complete · Play lesson</small></button>) : <p className="flr-muted-copy">No nearby chapters yet.</p>}</div></div>
         </aside>
       </div>
     </section>

@@ -12,7 +12,7 @@ const REGION_LABELS: Record<string, { label: string; icon: string; copy: string 
   special: { label: "Mystery Peaks", icon: "✦", copy: "Special keyboard symbols" },
 };
 
-export default function KnowledgeWorld({ nodes, selectedNode, onSelect, onRegionAction, onCloseRegion, actions, onStartCustomAdventure }: { nodes: readonly LearningNode[]; selectedNode?: LearningNode | null; onSelect: (node: LearningNode) => void; onRegionAction?: (action: RegionAction, node: LearningNode) => void; onCloseRegion?: () => void; actions?: readonly RegionAction[]; onStartCustomAdventure?: (nodes: readonly LearningNode[]) => void }) {
+export default function KnowledgeWorld({ nodes, selectedNode, onSelect, onRegionAction, onLessonSelect, onCloseRegion, actions, onStartCustomAdventure }: { nodes: readonly LearningNode[]; selectedNode?: LearningNode | null; onSelect: (node: LearningNode) => void; onRegionAction?: (action: RegionAction, node: LearningNode) => void; onLessonSelect?: (lesson: { id?: string }) => void; onCloseRegion?: () => void; actions?: readonly RegionAction[]; onStartCustomAdventure?: (nodes: readonly LearningNode[]) => void }) {
   const regions = [...new Set(nodes.map((node) => node.regionId || "world"))];
   const inputToolNodes = nodes.filter((node) => node.metadata?.contentCategory === "input-tools");
   const journeyRegions = regions.filter((regionId) => inputToolNodes.every((node) => (node.regionId || "world") !== regionId));
@@ -24,7 +24,7 @@ export default function KnowledgeWorld({ nodes, selectedNode, onSelect, onRegion
   return (
     <div className="flr-knowledge-world">
       {!selectedNode && <div className="flr-map-sky"><p className="flr-eyebrow">Living Knowledge World</p><h3>Explore the root regions</h3><p>Undiscovered places are invitations, not barriers.</p></div>}
-      {selectedNode && actions && <Suspense fallback={<div className="flr-region-action-panel" role="status">Opening region actions…</div>}><RegionActionPanel node={selectedNode} regionLabel={region.label} regionIcon={region.icon} actions={actions} onAction={(action) => onRegionAction?.(action, selectedNode)} onClose={() => onCloseRegion?.()} /></Suspense>}
+      {selectedNode && actions && <Suspense fallback={<div className="flr-region-action-panel" role="status">Opening region actions…</div>}><RegionActionPanel node={selectedNode} regionLabel={region.label} regionIcon={region.icon} actions={actions} onAction={(action) => onRegionAction?.(action, selectedNode)} onLessonSelect={onLessonSelect} onClose={() => onCloseRegion?.()} /></Suspense>}
       {!selectedNode && (
       <div className="flr-region-map">
         {journeyRegions.map((regionId, regionIndex) => {

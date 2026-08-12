@@ -195,6 +195,21 @@ test("Knowledge World supports region actions and a mixed custom adventure", asy
   await expect(page.getByRole("heading", { name: "Custom Knowledge Adventure" })).toBeVisible();
 });
 
+test("Knowledge World related lessons launch the selected lesson", async ({ page }) => {
+  await openKingdom(page);
+  await openFlower(page);
+  await page.getByRole("menuitem", { name: /Explore/ }).click();
+  await page.getByTestId("knowledge-node-root-h").click();
+  const panel = page.getByRole("region", { name: /Stroke Highlands actions/ });
+  await expect(panel).toBeVisible();
+  const relatedLesson = panel.locator(".flr-related-lesson").first();
+  await expect(relatedLesson).toBeVisible();
+  const lessonLabel = await relatedLesson.locator("b").innerText();
+  await relatedLesson.click();
+  await expect(page.getByTestId("chinese-input-lesson-player")).toBeVisible();
+  await expect(page.getByTestId("chinese-input-lesson-banner").locator("h2")).toHaveText(lessonLabel);
+});
+
 test("Input Tools keeps Z outside root regions and character mastery", async ({ page }) => {
   await openKingdom(page);
   await openFlower(page);
