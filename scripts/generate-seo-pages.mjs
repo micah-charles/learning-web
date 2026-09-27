@@ -25,7 +25,9 @@ const SUBJECT_CONFIG = {
 
 const CURRICULUM_LABELS = {
   ks3: "KS3",
+  "ks3-england": "England KS3",
   gcse: "GCSE",
+  "aqa-gcse-8035": "AQA GCSE Geography 8035",
   "us-middle-school": "US Middle School",
   other: "Other",
 };
@@ -233,9 +235,13 @@ function main() {
     allSubjects.get(key).bookCount++;
   }
 
-  // Collect study book packs (those with contentMdPath)
+  // Collect pack notes and standalone catalogue guides (those with contentMdPath).
   const studyBooks = [];
-  for (const pack of packs) {
+  const studyEntries = new Map();
+  for (const entry of [...packs, ...(manifest.studyBooks || [])]) {
+    if (entry?.id && entry.contentMdPath && !studyEntries.has(entry.id)) studyEntries.set(entry.id, entry);
+  }
+  for (const pack of studyEntries.values()) {
     if (!pack.contentMdPath) continue;
     const subject = pack.subject || "other";
     const conf = getSubjectConfig(subject);
@@ -423,7 +429,14 @@ function main() {
 
     // Build related topics
     const subjectBooks = bySubject.get(sb.subjectSlug)?.books || [];
-    const related = subjectBooks.filter((b) => b.id !== sb.id).slice(0, 6);
+    const sharedTags = new Set(sb.pack?.conceptTags || []);
+    const related = subjectBooks
+      .filter((b) => b.id !== sb.id && b.curriculum === sb.curriculum)
+      .sort((a, b) => {
+        const overlap = (candidate) => (candidate.pack?.conceptTags || []).filter((tag) => sharedTags.has(tag)).length;
+        return overlap(b) - overlap(a) || (a.pack?.order ?? 10000) - (b.pack?.order ?? 10000) || a.title.localeCompare(b.title);
+      })
+      .slice(0, 6);
 
     let relatedHtml = "";
     if (related.length > 0) {

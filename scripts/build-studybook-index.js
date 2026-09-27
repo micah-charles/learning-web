@@ -125,6 +125,10 @@ function collectStudyBookPaths(manifest) {
           subject: obj.subject || "",
           curriculum: obj.curriculum || "",
           packPath: obj.unifiedPath || "",
+          conceptTags: obj.conceptTags || [],
+          coverageIds: obj.coverageIds || [],
+          relatedPackIds: obj.relatedPackIds || [],
+          studyBookKind: obj.studyBookKind || "study-notes",
           filePath: obj.contentMdPath,
           fullPath
         });
@@ -146,6 +150,10 @@ function collectStudyBookPaths(manifest) {
               subject: obj.subject || "",
               curriculum: obj.curriculum || "",
               packPath: obj.unifiedPath || "",
+              conceptTags: obj.conceptTags || [],
+              coverageIds: obj.coverageIds || [],
+              relatedPackIds: obj.relatedPackIds || [],
+              studyBookKind: obj.studyBookKind || "study-notes",
               filePath: extra.path,
               fullPath,
               title: extra.title
@@ -244,6 +252,10 @@ async function buildIndex() {
           displayName: file.displayName,
           subject: file.subject,
           curriculum: file.curriculum,
+          conceptTags: file.conceptTags || [],
+          coverageIds: file.coverageIds || [],
+          relatedPackIds: file.relatedPackIds || [],
+          studyBookKind: file.studyBookKind || "study-notes",
           heading: chunk.heading,
           anchor: chunk.anchor,
           level: chunk.level,
