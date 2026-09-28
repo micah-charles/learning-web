@@ -1,0 +1,654 @@
+{
+  "schemaVersion": 1,
+  "sources": {
+    "englandKs3": "https://www.gov.uk/government/publications/national-curriculum-in-england-geography-programmes-of-study/national-curriculum-in-england-geography-programmes-of-study",
+    "aqaGcse8035Physical": "https://www.aqa.org.uk/subjects/geography/gcse/geography-8035/specification/subject-content/living-with-the-physical-environment",
+    "aqaGcse8035Human": "https://www.aqa.org.uk/subjects/geography/gcse/geography-8035/specification/subject-content/challenges-in-the-human-environment",
+    "aqaGcse8035Applications": "https://www.aqa.org.uk/subjects/geography/gcse/geography-8035/specification/subject-content/geographical-applications",
+    "aqaGcse8035Skills": "https://www.aqa.org.uk/subjects/geography/gcse/geography-8035/specification/subject-content/geographical-skills"
+  },
+  "topics": [
+    {
+      "id": "england_ks3_geo_places",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.locational-knowledge",
+        "ks3.place-knowledge"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_regional_studies"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/01-places.md"
+    },
+    {
+      "id": "england_ks3_geo_uk",
+      "curriculum": "ks3-england",
+      "status": "enrichment",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.place-based-exemplars",
+        "ks3.human-physical-interaction"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_uk_geography"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/02-uk.md"
+    },
+    {
+      "id": "england_ks3_geo_rocks",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.physical.geological-timescales",
+        "ks3.physical.rocks-weathering-soils"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_rocks_and_geology_1"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/03-rocks.md"
+    },
+    {
+      "id": "england_ks3_geo_tectonics",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.physical.plate-tectonics",
+        "ks3.human-physical-interaction"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_tectonic_hazards"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/04-tectonics.md"
+    },
+    {
+      "id": "england_ks3_geo_weather_climate",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.physical.weather-climate",
+        "ks3.physical.ice-age-to-present",
+        "ks3.human-physical-interaction"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_weather_climate"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/05-weather-climate.md"
+    },
+    {
+      "id": "england_ks3_geo_glaciation",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.physical.glaciation",
+        "ks3.physical.ice-age-to-present",
+        "ks3.human-physical-interaction"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_glaciation",
+        "ks3_geography_glaciation_1",
+        "ks3_geography_glaciation_2",
+        "ks3_geography_glaciation_consolidated"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/06-glaciation.md"
+    },
+    {
+      "id": "england_ks3_geo_hydrology",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.physical.hydrology",
+        "ks3.human.natural-resources",
+        "ks3.human-physical-interaction"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_water_resources"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/07-hydrology.md"
+    },
+    {
+      "id": "england_ks3_geo_rivers",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.physical.hydrology",
+        "ks3.physical.rivers",
+        "ks3.human-physical-interaction"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_rivers"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/08-rivers.md"
+    },
+    {
+      "id": "england_ks3_geo_coasts",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.physical.coasts",
+        "ks3.human-physical-interaction"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_coasts",
+        "ks3_geography_coasts_waves_landforms_management"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/09-coasts.md"
+    },
+    {
+      "id": "england_ks3_geo_ecosystems",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.physical.ecosystems-biomes",
+        "ks3.human-physical-interaction",
+        "ks3.human.natural-resources"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_ecosystems"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/10-ecosystems.md"
+    },
+    {
+      "id": "england_ks3_geo_population",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.human.population-urbanisation",
+        "ks3.place-knowledge"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_population_migration"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/11-population.md"
+    },
+    {
+      "id": "england_ks3_geo_settlements",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.human.population-urbanisation",
+        "ks3.human.settlement-land-use",
+        "ks3.human-physical-interaction"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_settlements"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/12-settlements.md"
+    },
+    {
+      "id": "england_ks3_geo_development",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.human.international-development",
+        "ks3.human-physical-interaction",
+        "ks3.place-knowledge"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_development_globalisation"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/13-development.md"
+    },
+    {
+      "id": "england_ks3_geo_economic_activity",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.human.economic-sectors",
+        "ks3.human.trade-links",
+        "ks3.human.natural-resources",
+        "ks3.human-physical-interaction"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_industry_economic_activity",
+        "ks3_geography_energy_resources"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/14-economic-activity.md"
+    },
+    {
+      "id": "england_ks3_geo_skills",
+      "curriculum": "ks3-england",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "ks3.skills.maps-atlases",
+        "ks3.skills.os-grid-scale",
+        "ks3.skills.aerial-satellite",
+        "ks3.skills.gis",
+        "ks3.skills.fieldwork-contrasting-locations",
+        "ks3.skills.data-analysis-communication"
+      ],
+      "relatedPackIds": [
+        "ks3_geography_geographical_skills"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/ks3/15-skills.md"
+    },
+    {
+      "id": "aqa_8035_natural_hazards",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.1.1.natural-hazards"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p1_physical_environment_june_2022",
+        "gcse_geo_p1_physical_environment_june_2023",
+        "gcse_geo_p1_physical_environment_june_2024",
+        "gcse_geo_p1_physical_environment_november_2020",
+        "gcse_geo_p1_physical_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/01-natural-hazards.md"
+    },
+    {
+      "id": "aqa_8035_tectonic_hazards",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.1.1.tectonic-hazards"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p1_physical_environment_june_2022",
+        "gcse_geo_p1_physical_environment_june_2023",
+        "gcse_geo_p1_physical_environment_june_2024",
+        "gcse_geo_p1_physical_environment_november_2020",
+        "gcse_geo_p1_physical_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/02-tectonic-hazards.md"
+    },
+    {
+      "id": "aqa_8035_weather_hazards",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.1.1.weather-hazards"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p1_physical_environment_june_2022",
+        "gcse_geo_p1_physical_environment_june_2023",
+        "gcse_geo_p1_physical_environment_june_2024",
+        "gcse_geo_p1_physical_environment_november_2020",
+        "gcse_geo_p1_physical_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/03-weather-hazards.md"
+    },
+    {
+      "id": "aqa_8035_climate_change",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.1.1.climate-change"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p1_physical_environment_june_2022",
+        "gcse_geo_p1_physical_environment_june_2023",
+        "gcse_geo_p1_physical_environment_june_2024",
+        "gcse_geo_p1_physical_environment_november_2020",
+        "gcse_geo_p1_physical_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/04-climate-change.md"
+    },
+    {
+      "id": "aqa_8035_ecosystems",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.1.2.ecosystems"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p1_physical_environment_june_2022",
+        "gcse_geo_p1_physical_environment_june_2023",
+        "gcse_geo_p1_physical_environment_june_2024",
+        "gcse_geo_p1_physical_environment_november_2020",
+        "gcse_geo_p1_physical_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/05-ecosystems.md"
+    },
+    {
+      "id": "aqa_8035_rainforest",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.1.2.tropical-rainforests"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p1_physical_environment_june_2022",
+        "gcse_geo_p1_physical_environment_june_2023",
+        "gcse_geo_p1_physical_environment_june_2024",
+        "gcse_geo_p1_physical_environment_november_2020",
+        "gcse_geo_p1_physical_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/06-rainforest.md"
+    },
+    {
+      "id": "aqa_8035_hot_deserts",
+      "curriculum": "aqa-gcse-8035",
+      "status": "option",
+      "optionGroup": "living-world-biome-choice",
+      "coverageIds": [
+        "aqa.3.1.2.hot-deserts"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p1_physical_environment_june_2022",
+        "gcse_geo_p1_physical_environment_june_2023",
+        "gcse_geo_p1_physical_environment_june_2024",
+        "gcse_geo_p1_physical_environment_november_2020",
+        "gcse_geo_p1_physical_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/07-hot-deserts.md"
+    },
+    {
+      "id": "aqa_8035_cold_environments",
+      "curriculum": "aqa-gcse-8035",
+      "status": "option",
+      "optionGroup": "living-world-biome-choice",
+      "coverageIds": [
+        "aqa.3.1.2.cold-environments"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p1_physical_environment_june_2022",
+        "gcse_geo_p1_physical_environment_june_2023",
+        "gcse_geo_p1_physical_environment_june_2024",
+        "gcse_geo_p1_physical_environment_november_2020",
+        "gcse_geo_p1_physical_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/08-cold-environments.md"
+    },
+    {
+      "id": "aqa_8035_uk_landscapes",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.1.3.uk-physical-landscapes"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p1_physical_environment_june_2022",
+        "gcse_geo_p1_physical_environment_june_2023",
+        "gcse_geo_p1_physical_environment_june_2024",
+        "gcse_geo_p1_physical_environment_november_2020",
+        "gcse_geo_p1_physical_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/09-uk-landscapes.md"
+    },
+    {
+      "id": "aqa_8035_coasts",
+      "curriculum": "aqa-gcse-8035",
+      "status": "option",
+      "optionGroup": "uk-landscapes-choice",
+      "coverageIds": [
+        "aqa.3.1.3.coastal-landscapes"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p1_physical_environment_june_2022",
+        "gcse_geo_p1_physical_environment_june_2023",
+        "gcse_geo_p1_physical_environment_june_2024",
+        "gcse_geo_p1_physical_environment_november_2020",
+        "gcse_geo_p1_physical_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/10-coasts.md"
+    },
+    {
+      "id": "aqa_8035_rivers",
+      "curriculum": "aqa-gcse-8035",
+      "status": "option",
+      "optionGroup": "uk-landscapes-choice",
+      "coverageIds": [
+        "aqa.3.1.3.river-landscapes"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p1_physical_environment_june_2022",
+        "gcse_geo_p1_physical_environment_june_2023",
+        "gcse_geo_p1_physical_environment_june_2024",
+        "gcse_geo_p1_physical_environment_november_2020",
+        "gcse_geo_p1_physical_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/11-rivers.md"
+    },
+    {
+      "id": "aqa_8035_glaciated_landscapes",
+      "curriculum": "aqa-gcse-8035",
+      "status": "option",
+      "optionGroup": "uk-landscapes-choice",
+      "coverageIds": [
+        "aqa.3.1.3.glacial-landscapes"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p1_physical_environment_june_2022",
+        "gcse_geo_p1_physical_environment_june_2023",
+        "gcse_geo_p1_physical_environment_june_2024",
+        "gcse_geo_p1_physical_environment_november_2020",
+        "gcse_geo_p1_physical_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/12-glaciated-landscapes.md"
+    },
+    {
+      "id": "aqa_8035_urban",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.2.1.urban-issues"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p2_human_environment_june_2022",
+        "gcse_geo_p2_human_environment_june_2023",
+        "gcse_geo_p2_human_environment_june_2024",
+        "gcse_geo_p2_human_environment_november_2020",
+        "gcse_geo_p2_human_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/13-urban.md"
+    },
+    {
+      "id": "aqa_8035_economic_world",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.2.2.changing-economic-world"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p2_human_environment_june_2022",
+        "gcse_geo_p2_human_environment_june_2023",
+        "gcse_geo_p2_human_environment_june_2024",
+        "gcse_geo_p2_human_environment_november_2020",
+        "gcse_geo_p2_human_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/14-economic-world.md"
+    },
+    {
+      "id": "aqa_8035_resource_management",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.2.3.resource-management"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p2_human_environment_june_2022",
+        "gcse_geo_p2_human_environment_june_2023",
+        "gcse_geo_p2_human_environment_june_2024",
+        "gcse_geo_p2_human_environment_november_2020",
+        "gcse_geo_p2_human_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/15-resource-management.md"
+    },
+    {
+      "id": "aqa_8035_food",
+      "curriculum": "aqa-gcse-8035",
+      "status": "option",
+      "optionGroup": "resource-management-option",
+      "coverageIds": [
+        "aqa.3.2.3.food"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p2_human_environment_june_2022",
+        "gcse_geo_p2_human_environment_june_2023",
+        "gcse_geo_p2_human_environment_june_2024",
+        "gcse_geo_p2_human_environment_november_2020",
+        "gcse_geo_p2_human_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/16-food.md"
+    },
+    {
+      "id": "aqa_8035_water",
+      "curriculum": "aqa-gcse-8035",
+      "status": "option",
+      "optionGroup": "resource-management-option",
+      "coverageIds": [
+        "aqa.3.2.3.water"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p2_human_environment_june_2022",
+        "gcse_geo_p2_human_environment_june_2023",
+        "gcse_geo_p2_human_environment_june_2024",
+        "gcse_geo_p2_human_environment_november_2020",
+        "gcse_geo_p2_human_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/17-water.md"
+    },
+    {
+      "id": "aqa_8035_energy",
+      "curriculum": "aqa-gcse-8035",
+      "status": "option",
+      "optionGroup": "resource-management-option",
+      "coverageIds": [
+        "aqa.3.2.3.energy"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p2_human_environment_june_2022",
+        "gcse_geo_p2_human_environment_june_2023",
+        "gcse_geo_p2_human_environment_june_2024",
+        "gcse_geo_p2_human_environment_november_2020",
+        "gcse_geo_p2_human_environment_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/18-energy.md"
+    },
+    {
+      "id": "aqa_8035_issue_evaluation",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.3.1.issue-evaluation"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p3_geographical_applications_june_2022",
+        "gcse_geo_p3_geographical_applications_june_2023",
+        "gcse_geo_p3_geographical_applications_june_2024",
+        "gcse_geo_p3_geographical_applications_november_2020",
+        "gcse_geo_p3_geographical_applications_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/19-issue-evaluation.md"
+    },
+    {
+      "id": "aqa_8035_fieldwork",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.3.2.fieldwork"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p3_geographical_applications_june_2022",
+        "gcse_geo_p3_geographical_applications_june_2023",
+        "gcse_geo_p3_geographical_applications_june_2024",
+        "gcse_geo_p3_geographical_applications_november_2020",
+        "gcse_geo_p3_geographical_applications_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/20-fieldwork.md"
+    },
+    {
+      "id": "aqa_8035_geographical_skills",
+      "curriculum": "aqa-gcse-8035",
+      "status": "required",
+      "optionGroup": null,
+      "coverageIds": [
+        "aqa.3.4.geographical-skills"
+      ],
+      "relatedPackIds": [
+        "gcse_geo_p3_geographical_applications_june_2022",
+        "gcse_geo_p3_geographical_applications_june_2023",
+        "gcse_geo_p3_geographical_applications_june_2024",
+        "gcse_geo_p3_geographical_applications_november_2020",
+        "gcse_geo_p3_geographical_applications_november_2021"
+      ],
+      "contentMdPath": "data/StudyBooks/england/geography/aqa-gcse-8035/21-geographical-skills.md"
+    }
+  ],
+  "ks3Outcomes": [
+    "ks3.human-physical-interaction",
+    "ks3.human.economic-sectors",
+    "ks3.human.international-development",
+    "ks3.human.natural-resources",
+    "ks3.human.population-urbanisation",
+    "ks3.human.settlement-land-use",
+    "ks3.human.trade-links",
+    "ks3.locational-knowledge",
+    "ks3.physical.coasts",
+    "ks3.physical.geological-timescales",
+    "ks3.physical.glaciation",
+    "ks3.physical.hydrology",
+    "ks3.physical.ice-age-to-present",
+    "ks3.physical.plate-tectonics",
+    "ks3.physical.rivers",
+    "ks3.physical.rocks-weathering-soils",
+    "ks3.physical.weather-climate",
+    "ks3.place-knowledge",
+    "ks3.skills.aerial-satellite",
+    "ks3.skills.data-analysis-communication",
+    "ks3.skills.fieldwork-contrasting-locations",
+    "ks3.skills.gis",
+    "ks3.skills.maps-atlases",
+    "ks3.skills.os-grid-scale"
+  ],
+  "aqaRequiredSections": [
+    "aqa.3.1.1.natural-hazards",
+    "aqa.3.1.1.tectonic-hazards",
+    "aqa.3.1.1.weather-hazards",
+    "aqa.3.1.1.climate-change",
+    "aqa.3.1.2.ecosystems",
+    "aqa.3.1.2.tropical-rainforests",
+    "aqa.3.1.3.uk-physical-landscapes",
+    "aqa.3.2.1.urban-issues",
+    "aqa.3.2.2.changing-economic-world",
+    "aqa.3.2.3.resource-management",
+    "aqa.3.3.1.issue-evaluation",
+    "aqa.3.3.2.fieldwork",
+    "aqa.3.4.geographical-skills"
+  ],
+  "aqaOptionGroups": {
+    "living-world-biome-choice": [
+      "aqa_8035_hot_deserts",
+      "aqa_8035_cold_environments"
+    ],
+    "uk-landscapes-choice": [
+      "aqa_8035_coasts",
+      "aqa_8035_rivers",
+      "aqa_8035_glaciated_landscapes"
+    ],
+    "resource-management-option": [
+      "aqa_8035_food",
+      "aqa_8035_water",
+      "aqa_8035_energy"
+    ]
+  }
+}

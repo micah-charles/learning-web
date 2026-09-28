@@ -2,6 +2,153 @@
 
 Generated from `data/generated/manifest.json`.
 
+## 1. Natural hazards and risk
+
+- Pack ID: `aqa_8035_natural_hazards`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/01-natural-hazards.md`
+
+## 10. Coastal landscapes in the UK — school option
+
+- Pack ID: `aqa_8035_coasts`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/10-coasts.md`
+
+## 11. River landscapes in the UK — school option
+
+- Pack ID: `aqa_8035_rivers`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/11-rivers.md`
+
+## 12. Glaciated landscapes in the UK — school option
+
+- Pack ID: `aqa_8035_glaciated_landscapes`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/12-glaciated-landscapes.md`
+
+## 13. Urban issues and challenges
+
+- Pack ID: `aqa_8035_urban`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/13-urban.md`
+
+## 14. The changing economic world
+
+- Pack ID: `aqa_8035_economic_world`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/14-economic-world.md`
+
+## 15. Resource management: food, water and energy overview
+
+- Pack ID: `aqa_8035_resource_management`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/15-resource-management.md`
+
+## 16. Food — school option
+
+- Pack ID: `aqa_8035_food`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/16-food.md`
+
+## 17. Water — school option
+
+- Pack ID: `aqa_8035_water`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/17-water.md`
+
+## 18. Energy — school option
+
+- Pack ID: `aqa_8035_energy`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/18-energy.md`
+
+## 19. Issue evaluation
+
+- Pack ID: `aqa_8035_issue_evaluation`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/19-issue-evaluation.md`
+
+## 2. Tectonic hazards
+
+- Pack ID: `aqa_8035_tectonic_hazards`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/02-tectonic-hazards.md`
+
+## 20. Fieldwork and geographical enquiry
+
+- Pack ID: `aqa_8035_fieldwork`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/20-fieldwork.md`
+
+## 21. Geographical skills
+
+- Pack ID: `aqa_8035_geographical_skills`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/21-geographical-skills.md`
+
+## 3. Weather hazards
+
+- Pack ID: `aqa_8035_weather_hazards`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/03-weather-hazards.md`
+
+## 4. Climate change
+
+- Pack ID: `aqa_8035_climate_change`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/04-climate-change.md`
+
+## 5. Ecosystems
+
+- Pack ID: `aqa_8035_ecosystems`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/05-ecosystems.md`
+
+## 6. Tropical rainforests
+
+- Pack ID: `aqa_8035_rainforest`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/06-rainforest.md`
+
+## 7. Hot deserts — school option
+
+- Pack ID: `aqa_8035_hot_deserts`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/07-hot-deserts.md`
+
+## 8. Cold environments — school option
+
+- Pack ID: `aqa_8035_cold_environments`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/08-cold-environments.md`
+
+## 9. Physical landscapes in the UK
+
+- Pack ID: `aqa_8035_uk_landscapes`
+- Subject: `geography`
+- Curriculum: `aqa-gcse-8035`
+- Study notes: `/data/StudyBooks/england/geography/aqa-gcse-8035/09-uk-landscapes.md`
+
 ## 1 The Study Of Religions Buddhism (June 2020)
 
 - Pack ID: `gcse_rs_1-the-study-of-religions-buddhism_november_2020`
@@ -2829,6 +2976,127 @@ Generated from `data/generated/manifest.json`.
 - Curriculum: `ks3`
 - Study notes: `/data/Packs/ks3/science/working_scientifically_scientific_investigation/study_notes.md`
 - Pack JSON: `/data/Packs/ks3/science/working_scientifically_scientific_investigation/pack_unified.json`
+
+## Y7 RS/RP Exam Visual Practice Pack
+
+- Pack ID: `y7_rs_rp_exam_visual_practice`
+- Subject: `religion`
+- Curriculum: `ks3`
+- Study notes: `/data/Packs/ks3/religion/y7_rs_rp_exam_visual_practice/study_notes.md`
+- Pack JSON: `/data/Packs/ks3/religion/y7_rs_rp_exam_visual_practice/pack_unified.json`
+
+## Year 7 History Visual Essay Practice
+
+- Pack ID: `ks3_history_y7_examination_practice`
+- Subject: `history`
+- Curriculum: `ks3`
+- Study notes: `/data/Packs/ks3/history/ks3_history_y7_examination_practice/study_notes.md`
+- Pack JSON: `/data/Packs/ks3/history/ks3_history_y7_examination_practice/pack_unified.json`
+
+## 1. World locations and connected places
+
+- Pack ID: `england_ks3_geo_places`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/01-places.md`
+
+## 10. Ecosystems, biomes and interdependence
+
+- Pack ID: `england_ks3_geo_ecosystems`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/10-ecosystems.md`
+
+## 11. Population, migration and urbanisation
+
+- Pack ID: `england_ks3_geo_population`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/11-population.md`
+
+## 12. Settlements, land use and urban change
+
+- Pack ID: `england_ks3_geo_settlements`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/12-settlements.md`
+
+## 13. International development and globalisation
+
+- Pack ID: `england_ks3_geo_development`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/13-development.md`
+
+## 14. Economic activity, trade and natural resources
+
+- Pack ID: `england_ks3_geo_economic_activity`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/14-economic-activity.md`
+
+## 15. Geographical skills and fieldwork
+
+- Pack ID: `england_ks3_geo_skills`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/15-skills.md`
+
+## 2. The geography of the United Kingdom
+
+- Pack ID: `england_ks3_geo_uk`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/02-uk.md`
+
+## 3. Geological time, rocks, weathering and soils
+
+- Pack ID: `england_ks3_geo_rocks`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/03-rocks.md`
+
+## 4. Plate tectonics and tectonic hazards
+
+- Pack ID: `england_ks3_geo_tectonics`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/04-tectonics.md`
+
+## 5. Weather, climate and climate change
+
+- Pack ID: `england_ks3_geo_weather_climate`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/05-weather-climate.md`
+
+## 6. Glaciation and changing landscapes
+
+- Pack ID: `england_ks3_geo_glaciation`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/06-glaciation.md`
+
+## 7. Hydrology, the water cycle and water resources
+
+- Pack ID: `england_ks3_geo_hydrology`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/07-hydrology.md`
+
+## 8. Rivers and river landscapes
+
+- Pack ID: `england_ks3_geo_rivers`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/08-rivers.md`
+
+## 9. Coasts and coastal change
+
+- Pack ID: `england_ks3_geo_coasts`
+- Subject: `geography`
+- Curriculum: `ks3-england`
+- Study notes: `/data/StudyBooks/england/geography/ks3/09-coasts.md`
 
 ## Cells And Organisms
 

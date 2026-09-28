@@ -9,6 +9,7 @@ export function getAllStudyBookDatasets(manifest) {
     manifest?.core,
     ...(manifest?.packs || []),
     ...(manifest?.revisionPacks || []),
+    ...(manifest?.studyBooks || []),
     ...(manifest?.passageGroups || []),
     ...(manifest?.sentenceBuilderPacks || []),
   ].filter(Boolean);

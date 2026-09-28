@@ -29,7 +29,9 @@ SUBJECT_LABELS = {
 
 CURRICULUM_LABELS = {
     "ks3": "KS3",
+    "ks3-england": "England KS3",
     "gcse": "GCSE",
+    "aqa-gcse-8035": "AQA GCSE Geography 8035",
     "us-middle-school": "US Middle School",
     "other": "Other",
 }
@@ -47,6 +49,14 @@ class StudyBook:
     word_count: int | None
     passage_count: int | None
     extra_files: tuple[dict, ...]
+    group: str
+    order: int | None
+    kind: str
+    required: str
+    option_group_note: str
+    concept_tags: tuple[str, ...]
+    coverage_ids: tuple[str, ...]
+    related_packs: tuple[dict, ...]
 
 
 def slug(value: str) -> str:
@@ -90,6 +100,11 @@ def collect_study_books(manifest: dict, include_missing: bool = False) -> tuple[
     books: list[StudyBook] = []
     skipped: list[str] = []
     seen: set[tuple[str, str]] = set()
+    manifest_objects = list(iter_manifest_objects(manifest))
+    pack_lookup = {
+        entry.get("id"): entry for entry in manifest_objects
+        if entry.get("id") and (entry.get("unifiedPath") or entry.get("passagePath"))
+    }
 
     for entry in iter_manifest_objects(manifest):
         content_path = entry.get("contentMdPath")
@@ -114,9 +129,25 @@ def collect_study_books(manifest: dict, include_missing: bool = False) -> tuple[
         subject = entry.get("subject") or "other"
         curriculum = entry.get("curriculum") or "other"
         title = entry.get("displayName") or entry.get("name") or entry.get("title") or entry.get("id") or content_path
+        entry_id = entry.get("id") or slug(title)
+        related_packs = []
+        for related_id in entry.get("relatedPackIds") or []:
+            related = pack_lookup.get(related_id)
+            if related:
+                pack_path = related.get("unifiedPath") or related.get("passagePath") or ""
+                related_packs.append({
+                    "id": related_id,
+                    "title": related.get("displayName") or related_id,
+                    "path": pack_path,
+                    "kind": "past-paper" if related_id.startswith("gcse_geo_") else "practice-pack",
+                })
+        kind = entry.get("studyBookKind") or (
+            "past-paper" if subject == "geography" and entry.get("curriculum") == "gcse" and str(entry_id).startswith("gcse_geo_")
+            else "study-notes"
+        )
         books.append(
             StudyBook(
-                id=entry.get("id") or slug(title),
+                id=entry_id,
                 title=title,
                 subject=subject,
                 curriculum=curriculum,
@@ -126,15 +157,23 @@ def collect_study_books(manifest: dict, include_missing: bool = False) -> tuple[
                 word_count=entry.get("wordCount"),
                 passage_count=entry.get("passageCount"),
                 extra_files=tuple(extra_existing if not include_missing else extra_files),
+                group=entry.get("group") or "",
+                order=entry.get("order") if isinstance(entry.get("order"), int) else None,
+                kind=kind,
+                required=entry.get("required") or "",
+                option_group_note=entry.get("optionGroupNote") or "",
+                concept_tags=tuple(entry.get("conceptTags") or []),
+                coverage_ids=tuple(entry.get("coverageIds") or []),
+                related_packs=tuple(related_packs),
             )
         )
 
-    books.sort(key=lambda b: (b.subject, b.curriculum, b.title.lower(), b.id))
+    books.sort(key=lambda b: (b.subject, b.curriculum, b.group.lower(), b.order if b.order is not None else 10000, b.title.lower(), b.id))
     return books, skipped
 
 
 def book_to_json(book: StudyBook, base_url: str) -> dict:
-    return {
+    result = {
         "id": book.id,
         "title": book.title,
         "subject": book.subject,
@@ -160,6 +199,26 @@ def book_to_json(book: StudyBook, base_url: str) -> dict:
             for extra in book.extra_files
         ],
     }
+    if book.subject == "geography":
+        result.update({
+            "group": book.group,
+            "order": book.order,
+            "studyBookKind": book.kind,
+            "required": book.required,
+            "optionGroupNote": book.option_group_note,
+            "conceptTags": list(book.concept_tags),
+            "coverageIds": list(book.coverage_ids),
+            "relatedPracticePacks": [
+                {
+                    **related,
+                    "url": url_for(related["path"], base_url) if related.get("path") else "",
+                    "relativeUrl": rel_url(related["path"]) if related.get("path") else "",
+                }
+                for related in book.related_packs
+            ],
+            "articleUrl": url_for(f"revision/studybook/{book.subject}/{slug(book.id)}/", base_url),
+        })
+    return result
 
 
 def html_page(title: str, body: str, books: list[StudyBook] | None = None) -> str:
@@ -277,6 +336,8 @@ def render_root_index(books: list[StudyBook], base_url: str) -> str:
 
 
 def render_subject_index(subject: str, books: list[StudyBook]) -> str:
+    if subject == "geography":
+        return render_geography_index(books)
     label = human_label(subject, SUBJECT_LABELS)
     by_curriculum: dict[str, list[StudyBook]] = defaultdict(list)
     for book in books:
@@ -309,21 +370,136 @@ def render_subject_index(subject: str, books: list[StudyBook]) -> str:
     return html_page(f"FoxChild@Learn {label} Study Books", body, books)
 
 
+def render_geography_index(books: list[StudyBook]) -> str:
+    curriculum_tabs = [
+        ("us-middle-school", "US Middle School"),
+        ("ks3-england", "England KS3"),
+        ("aqa-gcse-8035", "AQA GCSE Geography 8035"),
+    ]
+    past_papers = [book for book in books if book.kind == "past-paper"]
+    guide_panels = []
+    tab_buttons = []
+
+    def ordered(items: list[StudyBook]) -> list[StudyBook]:
+        return sorted(items, key=lambda book: (book.order if book.order is not None else 10000, book.title.lower()))
+
+    for index, (curriculum, label) in enumerate(curriculum_tabs):
+        selected = index == 0
+        tab_buttons.append(
+            f'<button class="curriculum-tab" id="tab-{curriculum}" role="tab" aria-selected="{"true" if selected else "false"}" aria-controls="panel-{curriculum}" tabindex="{"0" if selected else "-1"}" data-curriculum="{curriculum}">{html.escape(label)} <span class="tab-count">{sum(1 for book in books if book.curriculum == curriculum)}</span></button>'
+        )
+        items = ordered([book for book in books if book.curriculum == curriculum])
+        group_sections = []
+        groups: dict[str, list[StudyBook]] = defaultdict(list)
+        for book in items:
+            groups[book.group or ("Topic guides" if book.kind == "topic-guide" else "Study notes")].append(book)
+        for group_name, group_books in groups.items():
+            group_sections.append(
+                f'<section class="chapter-group"><h3>{html.escape(group_name)}</h3><ol class="book-list">{"".join(render_book_item(book) for book in ordered(group_books))}</ol></section>'
+            )
+        guide_panels.append(
+            f'<div class="curriculum-panel" id="panel-{curriculum}" role="tabpanel" aria-labelledby="tab-{curriculum}" data-testid="panel-{curriculum}" data-curriculum-panel="{curriculum}"{" hidden" if not selected else ""}>{"".join(group_sections)}</div>'
+        )
+
+    paper_items = "".join(render_book_item(book) for book in sorted(past_papers, key=lambda book: book.title.lower()))
+    body = f"""<header>
+  <p><a href="../">All Study Books</a></p>
+  <p class="muted">Curriculum topic guides and practice resources</p>
+  <h1>Geography Study Books</h1>
+  <p>Choose a curriculum to browse its chapter list. Each topic opens as a readable Study Book article; existing revision and past-paper packs remain available as separate practice resources.</p>
+  <p class="catalogue-summary">{len(books) - len(past_papers)} topic guides and {len(past_papers)} GCSE past-paper note packs.</p>
+</header>
+<nav class="curriculum-tabs" role="tablist" aria-label="Geography curriculum" data-testid="geography-curriculum-tabs">{"".join(tab_buttons)}</nav>
+<div class="curriculum-panels">{"".join(guide_panels)}</div>
+<details class="past-paper-group" data-testid="geography-past-paper-group">
+  <summary>GCSE past-paper notes <span class="tab-count">{len(past_papers)}</span></summary>
+  <p class="muted">Question-by-question notes from existing exam sittings. These remain separate from the AQA GCSE topic guides above.</p>
+  <ol class="book-list">{paper_items}</ol>
+</details>
+<script>
+  (() => {{
+    const tabs = Array.from(document.querySelectorAll('[data-curriculum]'));
+    const panels = Array.from(document.querySelectorAll('[data-curriculum-panel]'));
+    function selectTab(tab, focus = false) {{
+      const curriculum = tab.dataset.curriculum;
+      tabs.forEach((candidate) => {{
+        const selected = candidate === tab;
+        candidate.setAttribute('aria-selected', String(selected));
+        candidate.tabIndex = selected ? 0 : -1;
+      }});
+      panels.forEach((panel) => {{ panel.hidden = panel.dataset.curriculumPanel !== curriculum; }});
+      if (focus) tab.focus();
+    }}
+    tabs.forEach((tab, index) => {{
+      tab.addEventListener('click', () => selectTab(tab));
+      tab.addEventListener('keydown', (event) => {{
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+        event.preventDefault();
+        const next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length;
+        selectTab(tabs[next], true);
+      }});
+    }});
+  }})();
+</script>
+<style>
+  .curriculum-tabs {{ display: flex; gap: 8px; overflow-x: auto; padding: 4px 2px 12px; border-bottom: 1px solid #e5dccd; }}
+  .curriculum-tab {{ flex: 0 0 auto; border: 1px solid #d8cbb8; border-radius: 999px; padding: 10px 14px; background: #fffdfa; color: #2f281f; font: inherit; cursor: pointer; }}
+  .curriculum-tab[aria-selected="true"] {{ background: #146c78; border-color: #146c78; color: white; }}
+  .curriculum-tab:focus-visible {{ outline: 3px solid #edb832; outline-offset: 2px; }}
+  .tab-count {{ display: inline-block; margin-left: 5px; font-size: .82em; opacity: .8; }}
+  .curriculum-panel[hidden] {{ display: none; }}
+  .chapter-group h3 {{ margin: 18px 0 10px; }}
+  .past-paper-group {{ margin-top: 30px; border: 1px solid #e7dccb; border-radius: 10px; padding: 14px; background: #f7f0e5; }}
+  .past-paper-group summary {{ cursor: pointer; font-weight: 700; }}
+  @media (max-width: 620px) {{ main {{ width: min(calc(100% - 24px), 1080px); padding-top: 20px; }} .curriculum-tab {{ white-space: nowrap; }} .book {{ padding: 12px; }} }}
+</style>"""
+    return html_page("FoxChild@Learn Geography Study Books", body, books)
+
+
 def render_book_item(book: StudyBook) -> str:
+    if book.subject != "geography":
+        meta = [
+            human_label(book.curriculum, CURRICULUM_LABELS),
+            f"{book.word_count} words" if book.word_count is not None else "",
+            f"{book.passage_count} passages" if book.passage_count is not None else "",
+        ]
+        meta_html = "".join(f'<span class="pill">{html.escape(value)}</span>' for value in meta if value)
+        links = [f'<a href="/{html.escape(book.content_path)}">Study notes</a>']
+        if book.pack_path:
+            links.append(f'<a href="/{html.escape(book.pack_path)}">Pack JSON</a>')
+        return f"""<li class="book">
+  <strong>{html.escape(book.title)}</strong>
+  <div class="meta">{meta_html}</div>
+  <p>{' · '.join(links)}</p>
+</li>"""
     meta = [
         human_label(book.curriculum, CURRICULUM_LABELS),
         f"{book.word_count} words" if book.word_count is not None else "",
         f"{book.passage_count} passages" if book.passage_count is not None else "",
     ]
     meta_html = "".join(f'<span class="pill">{html.escape(value)}</span>' for value in meta if value)
-    links = [f'<a href="/{html.escape(book.content_path)}">Study notes</a>']
+    article_href = f"/revision/studybook/{book.subject}/{slug(book.id)}/"
+    links = [f'<a href="{html.escape(article_href)}">Open Study Book</a>', f'<a href="/{html.escape(book.content_path)}">Markdown</a>']
     if book.pack_path:
         links.append(f'<a href="/{html.escape(book.pack_path)}">Pack JSON</a>')
+    status = ""
+    if book.required == "option":
+        text = book.option_group_note or "School choice"
+        status = f'<span class="pill option-pill">Option · {html.escape(text)}</span>'
+    elif book.required == "required":
+        status = '<span class="pill">Required</span>'
+    related_links = ""
+    if book.related_packs:
+        related_links = "<p class=\"practice-links\"><strong>Related practice:</strong> " + " · ".join(
+            f'<a href="/{html.escape(pack["path"])}">{html.escape(pack["title"])}</a>'
+            for pack in book.related_packs
+        ) + "</p>"
+    related_html = f"  {related_links}\n" if related_links else ""
     return f"""<li class="book">
   <strong>{html.escape(book.title)}</strong>
-  <div class="meta">{meta_html}</div>
+  <div class="meta">{meta_html}{status}</div>
   <p>{' · '.join(links)}</p>
-</li>"""
+{related_html}</li>"""
 
 
 def render_markdown(title: str, books: list[StudyBook], include_content: bool) -> str:
